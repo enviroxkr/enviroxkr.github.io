@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>엔바이록스 주식회사 | ENVIROX Co., Ltd.</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap">
+<style>
+:root{--green:#3a8c3a;--gl:#5aaa5a;--gp:#e8f4e8;--gm:#b8ddb8;--dark:#1e2a1e;--text:#1a1a1a;--text2:#555;--border:#e0e8e0;--gray:#f7f8f7;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;color:var(--text);background:#fff;}
+
+/* ===== 홈페이지 ===== */
+#site{display:block;}
+#erp-app{display:none;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:68px;backdrop-filter:blur(8px);}
+.nav-logo{display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;gap:3px;}
+.nav-logo img{height:40px;width:auto;object-fit:contain;}
+.nav-brand{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;color:var(--dark);letter-spacing:3px;line-height:1;}
+.nav-brand span{color:var(--green);}
+.nav-sub{font-family:'Montserrat',sans-serif;font-size:7px;font-weight:500;color:var(--green);letter-spacing:3px;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:var(--text2);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--green);}
+.nav-cta{background:var(--green);color:#fff;padding:9px 22px;border-radius:3px;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:600;text-decoration:none;transition:background 0.2s;}
+.nav-cta:hover{background:var(--dark);}
+
+.hero{min-height:100vh;display:flex;align-items:stretch;position:relative;overflow:hidden;padding-top:68px;}
+.hero-left{flex:1;position:relative;display:flex;align-items:center;padding:60px;overflow:hidden;min-height:calc(100vh - 68px);}
+.hero-bg{position:absolute;inset:0;background-image:url('img_01.jpeg');background-size:cover;background-position:center;filter:brightness(0.38);}
+.hero-content{position:relative;z-index:2;max-width:540px;}
+.hero-badge{display:inline-block;background:rgba(58,140,58,0.25);border:1px solid rgba(90,170,90,0.5);color:#8dcc8d;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;padding:5px 16px;border-radius:2px;margin-bottom:24px;}
+.hero-content h1{font-family:'Noto Sans KR',sans-serif;font-size:44px;font-weight:700;line-height:1.35;color:#fff;margin-bottom:16px;word-break:keep-all;}
+.hero-content h1 em{font-style:normal;color:#6dcc6d;}
+.hero-content p{font-family:'Noto Sans KR',sans-serif;font-size:14px;color:rgba(255,255,255,0.75);line-height:1.9;margin-bottom:32px;word-break:keep-all;}
+.hero-btns{display:flex;gap:14px;}
+.btn-p{background:var(--green);color:#fff;padding:13px 28px;border-radius:3px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:600;transition:background 0.2s;}
+.btn-p:hover{background:var(--dark);}
+.btn-o2{border:1.5px solid rgba(255,255,255,0.7);color:#fff;padding:13px 28px;border-radius:3px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:600;transition:all 0.2s;}
+.btn-o2:hover{background:rgba(255,255,255,0.15);}
+.hero-wave{position:absolute;right:37%;top:0;bottom:0;width:70px;z-index:3;overflow:hidden;}
+.hero-wave svg{position:absolute;right:0;top:0;height:100%;width:70px;}
+.hero-right{width:38%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:2;}
+.hero-right .lm{width:160px;height:auto;object-fit:contain;}
+.hero-right-sub{font-family:'Montserrat',sans-serif;font-size:7.5px;font-weight:600;color:#bbb;letter-spacing:3px;}
+.hero-right-company{font-family:'Noto Sans KR',sans-serif;font-size:11px;color:#999;letter-spacing:0.5px;}
+
+section{padding:90px 60px;}
+.eyebrow{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--green);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.sec-title{font-family:'Noto Sans KR',sans-serif;font-size:30px;font-weight:700;color:var(--dark);margin-bottom:14px;word-break:keep-all;}
+.gbar{width:44px;height:3px;background:var(--green);margin-bottom:18px;}
+.sec-desc{font-family:'Noto Sans KR',sans-serif;font-size:14px;color:var(--text2);line-height:1.85;max-width:560px;word-break:keep-all;margin-bottom:44px;}
+
+/* 회사소개 */
+.about{background:#fff;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;}
+.stat-box{background:var(--gray);border-left:3px solid var(--green);padding:16px 18px;border-radius:2px;}
+.stat-num{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:var(--green);line-height:1;}
+.stat-label{font-family:'Noto Sans KR',sans-serif;font-size:11px;color:var(--text2);margin-top:4px;}
+.about-right{background:var(--dark);border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:22px;}
+.val-item{border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:18px;}
+.val-item:last-child{border-bottom:none;padding-bottom:0;}
+.val-title{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--gl);letter-spacing:2.5px;margin-bottom:6px;}
+.val-desc{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(255,255,255,0.7);line-height:1.75;word-break:keep-all;}
+
+/* 사업분야 */
+.business{background:var(--gray);}
+.biz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.biz-card{background:#fff;border-radius:3px;padding:28px 24px;border-top:3px solid var(--green);transition:box-shadow 0.2s,transform 0.2s;}
+.biz-card:hover{box-shadow:0 8px 28px rgba(58,140,58,0.1);transform:translateY(-3px);}
+.biz-icon{font-size:28px;margin-bottom:14px;}
+.biz-title{font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:700;color:var(--dark);margin-bottom:10px;}
+.biz-list{list-style:none;display:flex;flex-direction:column;gap:4px;}
+.biz-list li{font-family:'Noto Sans KR',sans-serif;font-size:12px;color:var(--text2);padding-left:12px;position:relative;line-height:1.6;}
+.biz-list li::before{content:'·';position:absolute;left:0;color:var(--green);font-weight:700;}
+
+/* 제품 */
+.products{background:#fff;}
+.prod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+.prod-card{border-radius:4px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);transition:box-shadow 0.2s,transform 0.2s;}
+.prod-card:hover{box-shadow:0 8px 28px rgba(0,0,0,0.14);transform:translateY(-3px);}
+.prod-img{height:220px;position:relative;overflow:hidden;}
+.prod-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.4s;}
+.prod-card:hover .prod-img img{transform:scale(1.04);}
+.prod-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,35,20,0.88) 0%,rgba(20,35,20,0.15) 55%,transparent 100%);}
+.prod-tag{position:absolute;top:14px;left:14px;z-index:2;background:var(--green);color:#fff;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;padding:4px 12px;border-radius:2px;letter-spacing:1.5px;}
+.prod-title{position:absolute;bottom:14px;left:16px;right:16px;z-index:2;font-family:'Noto Sans KR',sans-serif;font-size:17px;font-weight:700;color:#fff;}
+.prod-body{padding:16px 20px;background:#fff;}
+.prod-desc{font-family:'Noto Sans KR',sans-serif;font-size:12.5px;color:var(--text2);line-height:1.75;word-break:keep-all;}
+
+/* 갤러리 */
+.gallery{background:var(--dark);padding:90px 60px;}
+.gallery .eyebrow{color:var(--gl);}
+.gallery .sec-title{color:#fff;}
+.gallery .sec-desc{color:rgba(255,255,255,0.55);}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.gi{position:relative;overflow:hidden;border-radius:3px;aspect-ratio:1;cursor:pointer;}
+.gi.wide{grid-column:span 2;aspect-ratio:2/1;}
+.gi img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.4s;}
+.gi:hover img{transform:scale(1.06);}
+.gov{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;}
+.gi:hover .gov{background:rgba(58,140,58,0.2);}
+.glb{position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(to top,rgba(0,0,0,0.75),transparent);color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:11px;font-weight:500;opacity:0;transition:opacity 0.3s;}
+.gi:hover .glb{opacity:1;}
+
+/* 견적문의 */
+.contact{background:#fff;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.contact-info{display:flex;flex-direction:column;gap:18px;margin-top:8px;}
+.info-row{display:flex;align-items:flex-start;gap:14px;}
+.info-icon{width:36px;height:36px;background:var(--gp);border:1px solid var(--gm);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;margin-top:2px;}
+.info-text{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:var(--text2);line-height:1.75;}
+.info-text strong{color:var(--dark);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;display:block;margin-bottom:2px;letter-spacing:1.5px;}
+.contact-form{background:var(--gray);border:1px solid var(--border);border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;color:#888;letter-spacing:1px;}
+.form-group input,.form-group select,.form-group textarea{background:#fff;border:1px solid var(--border);border-radius:3px;padding:10px 14px;font-family:'Noto Sans KR',sans-serif;font-size:13px;color:var(--text);outline:none;transition:border-color 0.2s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green);}
+.form-group textarea{resize:vertical;min-height:88px;}
+.form-submit{background:var(--green);color:#fff;border:none;padding:13px;border-radius:3px;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background 0.2s;}
+.form-submit:hover{background:var(--dark);}
+
+footer{background:#111;padding:32px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.footer-logo{display:flex;align-items:center;gap:10px;}
+.footer-logo img{height:44px;width:auto;object-fit:contain;}
+.footer-brand{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;color:rgba(255,255,255,0.6);letter-spacing:3px;}
+.footer-info{font-family:'Noto Sans KR',sans-serif;font-size:11px;color:rgba(255,255,255,0.3);line-height:1.8;}
+.footer-copy{font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:0.5px;}
+
+/* 직원 로그인 배너 */
+#erp-banner{position:fixed;bottom:28px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#erp-login-box{background:#1e2a1e;border-radius:8px;padding:24px;width:280px;box-shadow:0 8px 32px rgba(0,0,0,0.3);display:none;}
+#erp-login-box h4{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
+#erp-login-box h4 span{color:rgba(255,255,255,0.5);cursor:pointer;font-size:18px;font-weight:400;}
+.elf{margin-bottom:10px;}
+.elflabel{font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:5px;display:block;letter-spacing:0.5px;}
+.elfinput{width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:9px 12px;font-size:13px;color:#fff;outline:none;font-family:'Noto Sans KR',sans-serif;}
+.elfinput:focus{border-color:#3a8c3a;}
+#erp-login-btn{width:100%;background:#3a8c3a;color:#fff;border:none;padding:11px;border-radius:4px;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px;}
+#erp-login-btn:hover{background:#5aaa5a;}
+#erp-toggle-btn{background:#1e2a1e;color:#fff;border:none;padding:12px 20px;border-radius:30px;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:background 0.2s;}
+#erp-toggle-btn:hover{background:#3a8c3a;}
+
+/* ===== ERP ===== */
+#erp-login-screen{position:fixed;inset:0;background:#1e2a1e;display:flex;align-items:center;justify-content:center;z-index:999;}
+.erp-login-box{background:#fff;border-radius:10px;padding:48px 40px;width:360px;text-align:center;}
+.erp-login-box img{height:56px;margin-bottom:12px;object-fit:contain;}
+.erp-brand{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;color:#1e2a1e;margin-bottom:4px;letter-spacing:3px;}
+.erp-brand span{color:#3a8c3a;}
+.erp-sub{font-size:10px;color:#aaa;letter-spacing:2px;font-family:'Montserrat',sans-serif;margin-bottom:28px;}
+.elf2{text-align:left;margin-bottom:14px;}
+.elf2 label{font-size:11px;font-weight:600;color:#888;display:block;margin-bottom:5px;}
+.elf2 input{width:100%;border:1px solid #e0e0e0;border-radius:4px;padding:11px 14px;font-size:14px;font-family:'Noto Sans KR',sans-serif;outline:none;}
+.elf2 input:focus{border-color:#3a8c3a;}
+#erp-do-login{width:100%;background:#3a8c3a;color:#fff;border:none;padding:13px;border-radius:4px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px;font-family:'Noto Sans KR',sans-serif;}
+#erp-do-login:hover{background:#1e2a1e;}
+
+.sb{position:fixed;top:0;left:0;bottom:0;width:220px;background:#1e2a1e;overflow-y:auto;z-index:100;}
+.sb-logo{padding:18px 18px 14px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:10px;}
+.sb-logo img{height:30px;object-fit:contain;}
+.sb-logo-t{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;color:#fff;letter-spacing:2px;}
+.sb-logo-t span{color:#5aaa5a;}
+.sb-logo-s{font-size:5.5px;color:rgba(255,255,255,0.4);letter-spacing:1.5px;font-family:'Montserrat',sans-serif;}
+.sb-user{padding:12px 18px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:10px;}
+.sb-av{width:32px;height:32px;border-radius:50%;background:#3a8c3a;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;}
+.sb-nm{font-size:13px;font-weight:600;color:#fff;}
+.sb-rl{font-size:10px;color:rgba(255,255,255,0.5);margin-top:1px;}
+.sb-nav{padding:10px 0;}
+.sb-sec{padding:8px 18px 3px;font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:1.5px;font-family:'Montserrat',sans-serif;font-weight:600;}
+.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;cursor:pointer;color:rgba(255,255,255,0.6);font-size:13px;border-left:3px solid transparent;transition:all 0.15s;}
+.sb-item:hover{background:rgba(255,255,255,0.06);color:#fff;}
+.sb-item.on{background:rgba(58,140,58,0.2);color:#fff;border-left-color:#5aaa5a;}
+.sb-ic{font-size:15px;width:18px;text-align:center;}
+.sb-bot{position:absolute;bottom:0;left:0;right:0;padding:14px 18px;border-top:1px solid rgba(255,255,255,0.08);}
+.sb-out{color:rgba(255,255,255,0.4);font-size:12px;cursor:pointer;display:flex;align-items:center;gap:8px;}
+.sb-out:hover{color:#fff;}
+
+.erp-main{margin-left:220px;min-height:100vh;}
+.topbar2{background:#fff;border-bottom:1px solid #e0e8e0;padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+.topbar2-title{font-size:17px;font-weight:700;color:#1e2a1e;}
+.topbar2-date{font-size:12px;color:#888;}
+.erp-content{padding:24px;}
+.epage{display:none;}
+.epage.on{display:block;}
+
+.ecard{background:#fff;border-radius:6px;border:1px solid #e0e8e0;padding:20px;margin-bottom:16px;}
+.ecard-title{font-size:14px;font-weight:700;color:#1e2a1e;margin-bottom:16px;}
+.egrid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;}
+.egrid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.estat{background:#fff;border-radius:6px;border:1px solid #e0e8e0;padding:18px;}
+.estat-label{font-size:11px;color:#888;margin-bottom:8px;}
+.estat-val{font-family:'Montserrat',sans-serif;font-size:24px;font-weight:800;color:#1e2a1e;}
+.estat-sub{font-size:11px;color:#888;margin-top:3px;}
+.esg{border-left:3px solid #3a8c3a;}.esb{border-left:3px solid #1976d2;}.eso{border-left:3px solid #f57c00;}.esr{border-left:3px solid #e53935;}
+
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:#f8faf8;border-bottom:2px solid #e0e8e0;padding:9px 12px;text-align:left;font-size:11px;font-weight:700;color:#888;letter-spacing:0.3px;}
+td{border-bottom:1px solid #e0e8e0;padding:10px 12px;}
+tr:hover td{background:#fafcfa;}
+
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;}
+.bg{background:#e8f5e9;color:#2e7d32;}.bb{background:#e3f2fd;color:#1565c0;}.bo{background:#fff3e0;color:#e65100;}.br{background:#ffebee;color:#c62828;}.bgr{background:#f5f5f5;color:#616161;}
+
+.ebtn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'Noto Sans KR',sans-serif;}
+.ebtn-g{background:#3a8c3a;color:#fff;}.ebtn-g:hover{background:#1e2a1e;}
+.ebtn-o{background:#fff;color:#3a8c3a;border:1px solid #3a8c3a;}.ebtn-o:hover{background:#3a8c3a;color:#fff;}
+.ebtn-sm{padding:4px 10px;font-size:12px;}
+.erow-end{display:flex;justify-content:flex-end;gap:8px;margin-bottom:16px;}
+.erow-between{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+
+.emodal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;display:none;align-items:center;justify-content:center;}
+.emodal-bg.on{display:flex;}
+.emodal{background:#fff;border-radius:8px;padding:28px;width:460px;max-width:95vw;max-height:90vh;overflow-y:auto;}
+.emodal h3{font-size:16px;font-weight:700;margin-bottom:20px;}
+.efg{display:flex;flex-direction:column;gap:5px;margin-bottom:13px;}
+.efg label{font-size:11px;font-weight:600;color:#888;}
+.efg input,.efg select,.efg textarea{border:1px solid #e0e8e0;border-radius:4px;padding:9px 12px;font-size:13px;font-family:'Noto Sans KR',sans-serif;outline:none;}
+.efg input:focus,.efg select:focus,.efg textarea:focus{border-color:#3a8c3a;}
+.efg textarea{min-height:80px;resize:vertical;}
+.efr2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.emodal-foot{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;}
+.ehint{background:#f8faf8;border-radius:4px;padding:12px;font-size:12px;color:#666;margin-bottom:4px;}
+
+@media(max-width:768px){
+  nav{padding:0 16px;}
+  .nav-links,.nav-cta{display:none;}
+  .hero{flex-direction:column;}
+  .hero-left{padding:80px 20px 40px;min-height:60vh;}
+  .hero-content h1{font-size:28px;}
+  .hero-wave,.hero-right{display:none;}
+  section{padding:60px 20px;}
+  .about-grid,.contact-grid,.egrid2{grid-template-columns:1fr;gap:24px;}
+  .biz-grid{grid-template-columns:1fr 1fr;}
+  .prod-grid,.gallery-grid{grid-template-columns:1fr 1fr;}
+  .gi.wide{grid-column:span 2;}
+  .form-row,.efr2{grid-template-columns:1fr;}
+  footer{flex-direction:column;padding:24px;}
+  .about-stats,.egrid4{grid-template-columns:1fr 1fr;}
+  .sb{transform:translateX(-100%);transition:transform 0.3s;}
+  .sb.open{transform:translateX(0);}
+  .erp-main{margin-left:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 홈페이지 ===== -->
+<div id="site">
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="ENVIROX">
+    <div class="nav-brand">ENVIRO<span>X</span></div>
+    <div class="nav-sub">ENVIRONMENTAL SOLUTIONS</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">회사소개</a></li>
+    <li><a href="#business">사업분야</a></li>
+    <li><a href="#products">제품/설비</a></li>
+    <li><a href="#gallery">시공실적</a></li>
+    <li><a href="#contact">견적문의</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">견적 문의하기</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">ENVIROX CO., LTD.</div>
+      <h1>기술로 정화하고,<br><em>설비로 미래를</em> 만든다</h1>
+      <p>고효율 환경설비와 플랜트 제작으로<br>지속가능한 산업환경을 구축합니다.<br>RTO · 집진기 · 스크러버 · 백필터 환경설비 전문</p>
+      <div class="hero-btns">
+        <a href="#gallery" class="btn-p">시공실적 보기</a>
+        <a href="#contact" class="btn-o2">견적 문의</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 70 900" fill="none" preserveAspectRatio="none">
+      <path d="M70 0 C40 150 20 300 30 500 C40 680 60 780 70 900 L70 0 Z" fill="#3a8c3a"/>
+      <path d="M70 0 C52 140 36 285 46 490 C56 680 68 775 70 900 L70 0 Z" fill="#2d6e2d"/>
+    </svg>
+  </div>
+  <div class="hero-right">
+    <img class="lm" src="logo.png" alt="ENVIROX">
+    <div class="hero-right-sub">ENVIRONMENTAL SOLUTIONS</div>
+    <div class="hero-right-company">엔바이록스 주식회사</div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="eyebrow">Company</div><div class="gbar"></div>
+      <div class="sec-title">엔바이록스 주식회사</div>
+      <p class="sec-desc">환경설비 및 플랜트 제작·설치 전문기업으로, RTO·집진기·백필터·폐유탱크·2차판지 탱크·가압부상조·컨베이어·선별기 등 다양한 환경설비를 설계·제작·설치합니다.</p>
+      <div class="about-stats">
+        <div class="stat-box"><div class="stat-num">RTO</div><div class="stat-label">축열식 연소산화장치</div></div>
+        <div class="stat-box"><div class="stat-num">SCR</div><div class="stat-label">선택적 촉매환원설비</div></div>
+        <div class="stat-box"><div class="stat-num">VOC</div><div class="stat-label">유해가스 처리설비</div></div>
+        <div class="stat-box"><div class="stat-num">시흥</div><div class="stat-label">경기도 시흥시 본사</div></div>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="val-item"><div class="val-title">MISSION</div><div class="val-desc">산업현장의 오염 문제를 기술 기반 환경설비로 해결하고, 지속가능한 산업환경을 구축한다.</div></div>
+      <div class="val-item"><div class="val-title">VISION</div><div class="val-desc">국내 환경설비 제작 전문기업을 넘어 RTO·집진·이송·수처리 플랜트 분야 Top-tier 기업으로 성장한다.</div></div>
+      <div class="val-item"><div class="val-title">CORE VALUE</div><div class="val-desc">기술 중심 · 현장 중심 · 신뢰 중심 · 환경 중심의 4대 핵심가치를 기반으로 운영합니다.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="business" id="business">
+  <div class="eyebrow">Business</div><div class="gbar"></div>
+  <div class="sec-title">사업 분야</div>
+  <p class="sec-desc">환경설비부터 플랜트 설비, 이송 시스템, 수처리 설비까지 산업현장에 필요한 전 분야를 아우릅니다.</p>
+  <div class="biz-grid">
+    <div class="biz-card"><div class="biz-icon">🌿</div><div class="biz-title">환경설비</div><ul class="biz-list"><li>RTO VOC 처리 설비</li><li>집진기 / 백필터</li><li>철판 설비</li><li>폐유 저장 탱크</li></ul></div>
+    <div class="biz-card"><div class="biz-icon">🏭</div><div class="biz-title">플랜트 설비</div><ul class="biz-list"><li>2차판지 탱크 제작</li><li>산업용 저장탱크</li><li>압력용기 제작</li><li>철판 구조물</li></ul></div>
+    <div class="biz-card"><div class="biz-icon">⚙️</div><div class="biz-title">이송 시스템</div><ul class="biz-list"><li>뉴매틱 컨베이어</li><li>슬러지 컨베이어</li><li>스크류 컨베이어</li></ul></div>
+    <div class="biz-card"><div class="biz-icon">🔩</div><div class="biz-title">선별 설비</div><ul class="biz-list"><li>플라스틱 비동선별기</li><li>풍력선별기</li><li>재활용 선별 라인</li></ul></div>
+    <div class="biz-card"><div class="biz-icon">💧</div><div class="biz-title">수처리 설비</div><ul class="biz-list"><li>가압부상조</li><li>침전조</li><li>여과 시스템</li></ul></div>
+    <div class="biz-card"><div class="biz-icon">🛠️</div><div class="biz-title">구조물 제작</div><ul class="biz-list"><li>철골 구조물 제작</li><li>덕트 배관 제작</li><li>스테인리스 / 탄소강</li></ul></div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="eyebrow">Products</div><div class="gbar"></div>
+  <div class="sec-title">주요 제품 / 설비</div>
+  <p class="sec-desc">자체 기술력으로 설계·제작·설치하는 엔바이록스의 핵심 설비를 소개합니다.</p>
+  <div class="prod-grid">
+    <div class="prod-card"><div class="prod-img"><img src="img_05.jpeg" alt="RTO"><div class="prod-overlay"></div><div class="prod-tag">RTO</div><div class="prod-title">RTO (축열식 연소산화장치)</div></div><div class="prod-body"><div class="prod-desc">VOC 및 악취물질을 고온 연소하여 무해화. 95% 이상 열효율, 99% 처리효율 달성. 직접 설계·제작·설치.</div></div></div>
+    <div class="prod-card"><div class="prod-img"><img src="img_09.jpeg" alt="집진기"><div class="prod-overlay"></div><div class="prod-tag">DUST COLLECTOR</div><div class="prod-title">집진기 / 백필터</div></div><div class="prod-body"><div class="prod-desc">산업 현장 분진을 효과적으로 포집·제거. 대용량 백필터 자체 제작. 처리 용량·재질 현장 맞춤 제작.</div></div></div>
+    <div class="prod-card"><div class="prod-img"><img src="img_13.jpeg" alt="수처리"><div class="prod-overlay"></div><div class="prod-tag">WATER TREATMENT</div><div class="prod-title">수처리 설비</div></div><div class="prod-body"><div class="prod-desc">가압부상조·침전조·여과기 등 수처리 전반. STS304/316L 재질 고압 탱크 및 배관 맞춤 제작·설치.</div></div></div>
+    <div class="prod-card"><div class="prod-img"><img src="img_17.jpeg" alt="탱크"><div class="prod-overlay"></div><div class="prod-tag">TANK / PLANT</div><div class="prod-title">탱크 / 플랜트 설비</div></div><div class="prod-body"><div class="prod-desc">대형 저장탱크·압력용기·2차판지 탱크 등 플랜트 설비 자체 제작. 배관 시공 일괄 수행.</div></div></div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="eyebrow">Portfolio</div><div class="gbar"></div>
+  <div class="sec-title">시공 실적 · 제작 현장</div>
+  <p class="sec-desc">설계부터 제작·현장 설치까지 엔바이록스가 직접 수행한 시공 및 제작 현장입니다.</p>
+  <div class="gallery-grid">
+    <div class="gi wide"><img src="img_01.jpeg" alt="RTO 복합 플랜트 시공"><div class="gov"></div><div class="glb">RTO 복합 플랜트 시공</div></div>
+    <div class="gi"><img src="img_02.jpeg" alt="케익호퍼 제작"><div class="gov"></div><div class="glb">케익호퍼 제작</div></div>
+    <div class="gi"><img src="img_03.jpeg" alt="대형 RTO 야외 설치"><div class="gov"></div><div class="glb">대형 RTO 야외 설치</div></div>
+    <div class="gi"><img src="img_04.jpeg" alt="집진설비 현장 설치"><div class="gov"></div><div class="glb">집진설비 현장 설치</div></div>
+    <div class="gi"><img src="img_06.jpeg" alt="경사판 침전조 제작"><div class="gov"></div><div class="glb">경사판 침전조 제작</div></div>
+    <div class="gi wide"><img src="img_07.jpeg" alt="집진설비 철거 및 설치"><div class="gov"></div><div class="glb">집진설비 철거 및 설치</div></div>
+    <div class="gi"><img src="img_08.jpeg" alt="RTO 제작 및 조립"><div class="gov"></div><div class="glb">RTO 제작 및 조립</div></div>
+    <div class="gi"><img src="img_10.jpeg" alt="덕트 배관 시공"><div class="gov"></div><div class="glb">덕트 배관 시공</div></div>
+    <div class="gi"><img src="img_11.jpeg" alt="스크러버 설치"><div class="gov"></div><div class="glb">스크러버 설치</div></div>
+    <div class="gi"><img src="img_12.jpeg" alt="저장탱크 제작"><div class="gov"></div><div class="glb">저장탱크 제작</div></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="eyebrow">Contact</div><div class="gbar"></div>
+      <div class="sec-title">견적 문의</div>
+      <p class="sec-desc">환경설비 제작·설치에 관한 문의사항을 남겨주세요. 빠르게 연락드립니다.</p>
+      <div class="contact-info">
+        <div class="info-row"><div class="info-icon">📍</div><div class="info-text"><strong>ADDRESS</strong>경기도 시흥시 공단2대로 231 (정왕동, 3마 817-4)</div></div>
+        <div class="info-row"><div class="info-icon">📧</div><div class="info-text"><strong>EMAIL</strong>enviroxkr@gmail.com</div></div>
+        <div class="info-row"><div class="info-icon">🏢</div><div class="info-text"><strong>COMPANY</strong>엔바이록스 주식회사 (ENVIROX Co., Ltd.)<br>사업자등록번호: 349-88-03797</div></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group"><label>회사명</label><input type="text" placeholder="회사명 입력"></div>
+        <div class="form-group"><label>담당자</label><input type="text" placeholder="성함 입력"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>연락처</label><input type="tel" placeholder="010-0000-0000"></div>
+        <div class="form-group"><label>이메일</label><input type="email" placeholder="example@email.com"></div>
+      </div>
+      <div class="form-group"><label>문의 유형</label>
+        <select>
+          <option>RTO / VOC 처리설비</option>
+          <option>집진기 / 백필터</option>
+          <option>수처리 설비</option>
+          <option>탱크 / 플랜트</option>
+          <option>컨베이어 / 이송설비</option>
+          <option>기타 문의</option>
+        </select>
+      </div>
+      <div class="form-group"><label>문의 내용</label><textarea placeholder="설비 종류, 규모, 설치 장소 등 문의 내용을 자유롭게 작성해주세요."></textarea></div>
+      <button class="form-submit" onclick="alert('문의가 접수되었습니다. 빠르게 연락드리겠습니다.')">견적 문의하기</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <img src="logo.png" alt="ENVIROX">
+    <div class="footer-brand">ENVIROX</div>
+  </div>
+  <div class="footer-info">엔바이록스 주식회사 (ENVIROX Co., Ltd.) | 대표: 박홍준<br>경기도 시흥시 공단2대로 231 | enviroxkr@gmail.com</div>
+  <div class="footer-copy">© 2026 ENVIROX Co., Ltd. All rights reserved.</div>
+</footer>
+
+<!-- 직원 로그인 배너 -->
+<div id="erp-banner">
+  <div id="erp-login-box">
+    <h4>🔐 직원 로그인 <span onclick="toggleErpBox()">×</span></h4>
+    <div class="elf"><label class="elflabel">아이디</label><input class="elfinput" type="text" id="erp-id" placeholder="아이디 입력"></div>
+    <div class="elf"><label class="elflabel">비밀번호</label><input class="elfinput" type="password" id="erp-pw" placeholder="비밀번호 입력"></div>
+    <button id="erp-login-btn">로그인</button>
+  </div>
+  <button id="erp-toggle-btn" onclick="toggleErpBox()">🔐 직원 로그인</button>
+</div>
+</div>
+
+<!-- ===== ERP ===== -->
+<div id="erp-app">
+  <div id="erp-login-screen" style="display:none;">
+    <div class="erp-login-box">
+      <img src="logo.png" alt="ENVIROX">
+      <div class="erp-brand">ENVIRO<span>X</span></div>
+      <div class="erp-sub">ENVIRONMENTAL SOLUTIONS</div>
+      <div class="elf2"><label>아이디</label><input type="text" id="erp-lid" placeholder="아이디 입력"></div>
+      <div class="elf2"><label>비밀번호</label><input type="password" id="erp-lpw" placeholder="비밀번호 입력"></div>
+      <button id="erp-do-login">로그인</button>
+    </div>
+  </div>
+
+  <div id="erp-main-wrap" style="display:none;">
+    <div class="sb" id="erp-sb">
+      <div class="sb-logo">
+        <img src="logo.png" alt="">
+        <div><div class="sb-logo-t">ENVIRO<span>X</span></div><div class="sb-logo-s">ENVIRONMENTAL SOLUTIONS</div></div>
+      </div>
+      <div class="sb-user"><div class="sb-av" id="sb-av">박</div><div><div class="sb-nm" id="sb-nm">박홍준</div><div class="sb-rl" id="sb-rl">대표</div></div></div>
+      <div class="sb-nav">
+        <div class="sb-sec">MAIN</div>
+        <div class="sb-item on" data-page="dashboard"><span class="sb-ic">📊</span>대시보드</div>
+        <div class="sb-sec">업무관리</div>
+        <div class="sb-item" data-page="attendance"><span class="sb-ic">⏰</span>근태관리</div>
+        <div class="sb-item" data-page="project"><span class="sb-ic">🏗️</span>프로젝트/현장</div>
+        <div class="sb-item" data-page="quote"><span class="sb-ic">📋</span>견적서/발주서</div>
+        <div class="sb-sec">회사관리</div>
+        <div class="sb-item" data-page="client"><span class="sb-ic">🏢</span>거래처관리</div>
+        <div class="sb-item" data-page="material"><span class="sb-ic">📦</span>자재/재고</div>
+        <div class="sb-item salary-menu" data-page="salary"><span class="sb-ic">💰</span>급여관리</div>
+        <div class="sb-item expense-menu" data-page="expense"><span class="sb-ic">🧾</span>경비지출</div>
+        <div class="sb-sec">커뮤니케이션</div>
+        <div class="sb-item" data-page="mail"><span class="sb-ic">✉️</span>사내메시지</div>
+        <div class="sb-sec">설정</div>
+        <div class="sb-item admin-menu" data-page="settings"><span class="sb-ic">⚙️</span>직원/권한관리</div>
+      </div>
+      <div class="sb-bot"><div class="sb-out" id="erp-logout">🚪 로그아웃 (홈으로)</div></div>
+    </div>
+    <div class="erp-main">
+      <div class="topbar2"><div class="topbar2-title" id="erp-page-title">대시보드</div><div class="topbar2-date" id="erp-date"></div></div>
+      <div class="erp-content">
+
+        <div class="epage on" id="epage-dashboard">
+          <div class="egrid4">
+            <div class="estat esg"><div class="estat-label">진행중 현장</div><div class="estat-val">3</div><div class="estat-sub">이번달 신규 1건</div></div>
+            <div class="estat esb"><div class="estat-label">이번달 견적</div><div class="estat-val">5</div><div class="estat-sub">수주 2건</div></div>
+            <div class="estat eso"><div class="estat-label">미수금</div><div class="estat-val">2,400,000원</div></div>
+            <div class="estat esr"><div class="estat-label">휴가신청</div><div class="estat-val">1</div><div class="estat-sub">승인 대기</div></div>
+          </div>
+          <div class="egrid2">
+            <div class="ecard"><div class="ecard-title">📋 최근 견적서</div><table><thead><tr><th>거래처</th><th>금액</th><th>상태</th></tr></thead><tbody>
+              <tr><td>한국환경(주)</td><td>12,500,000원</td><td><span class="badge bg">수주</span></td></tr>
+              <tr><td>대림산업</td><td>8,200,000원</td><td><span class="badge bo">검토중</span></td></tr>
+              <tr><td>현대제철</td><td>24,000,000원</td><td><span class="badge bb">발송</span></td></tr>
+            </tbody></table></div>
+            <div class="ecard"><div class="ecard-title">🏗️ 현장 현황</div><table><thead><tr><th>현장명</th><th>담당자</th><th>진행률</th></tr></thead><tbody>
+              <tr><td>시흥 RTO 설치</td><td>박홍준</td><td><div style="background:#e0e0e0;border-radius:4px;height:6px;"><div style="background:#3a8c3a;width:75%;height:100%;border-radius:4px;"></div></div></td></tr>
+              <tr><td>안산 집진기</td><td>김과장</td><td><div style="background:#e0e0e0;border-radius:4px;height:6px;"><div style="background:#1976d2;width:40%;height:100%;border-radius:4px;"></div></div></td></tr>
+              <tr><td>화성 스크러버</td><td>이대리</td><td><div style="background:#e0e0e0;border-radius:4px;height:6px;"><div style="background:#f57c00;width:20%;height:100%;border-radius:4px;"></div></div></td></tr>
+            </tbody></table></div>
+            <div class="ecard"><div class="ecard-title">⏰ 오늘 근태현황</div><table><thead><tr><th>이름</th><th>출근</th><th>상태</th></tr></thead><tbody>
+              <tr><td>박홍준</td><td>08:45</td><td><span class="badge bg">출근</span></td></tr>
+              <tr><td>김과장</td><td>09:02</td><td><span class="badge bg">출근</span></td></tr>
+              <tr><td>이대리</td><td>-</td><td><span class="badge bo">휴가</span></td></tr>
+            </tbody></table></div>
+            <div class="ecard"><div class="ecard-title">🧾 이번달 경비</div><table><thead><tr><th>항목</th><th>금액</th></tr></thead><tbody>
+              <tr><td>교통비</td><td>320,000원</td></tr>
+              <tr><td>식대</td><td>580,000원</td></tr>
+              <tr><td>자재구입</td><td>1,240,000원</td></tr>
+            </tbody></table><div style="margin-top:12px;padding-top:12px;border-top:1px solid #e0e8e0;display:flex;justify-content:space-between;font-size:13px;font-weight:700;"><span>합계</span><span style="color:#3a8c3a;">2,140,000원</span></div></div>
+          </div>
+        </div>
+
+        <div class="epage" id="epage-attendance">
+          <div class="erow-end"><button class="ebtn ebtn-g" onclick="openM('m-att')">+ 근태 등록</button></div>
+          <div class="egrid4" style="margin-bottom:16px;">
+            <div class="estat esg"><div class="estat-label">정상출근</div><div class="estat-val">7</div></div>
+            <div class="estat eso"><div class="estat-label">지각</div><div class="estat-val">1</div></div>
+            <div class="estat esb"><div class="estat-label">휴가</div><div class="estat-val">1</div></div>
+            <div class="estat esr"><div class="estat-label">미출근</div><div class="estat-val">0</div></div>
+          </div>
+          <div class="ecard"><div class="ecard-title">⏰ 근태 현황</div><table><thead><tr><th>이름</th><th>날짜</th><th>출근</th><th>퇴근</th><th>상태</th><th>비고</th></tr></thead><tbody>
+            <tr><td>박홍준</td><td>2026-06-15</td><td>08:45</td><td>-</td><td><span class="badge bg">출근</span></td><td></td></tr>
+            <tr><td>김과장</td><td>2026-06-15</td><td>09:02</td><td>-</td><td><span class="badge bg">출근</span></td><td></td></tr>
+            <tr><td>이대리</td><td>2026-06-15</td><td>-</td><td>-</td><td><span class="badge bo">휴가</span></td><td>연차</td></tr>
+          </tbody></table></div>
+          <div class="ecard"><div class="ecard-title">📅 휴가신청 현황</div><table><thead><tr><th>신청자</th><th>기간</th><th>종류</th><th>사유</th><th>상태</th><th>처리</th></tr></thead><tbody>
+            <tr><td>최사원</td><td>2026-06-20~21</td><td>연차</td><td>가족행사</td><td><span class="badge bo">대기</span></td><td><button class="ebtn ebtn-g ebtn-sm" onclick="alert('승인되었습니다.')">승인</button></td></tr>
+          </tbody></table></div>
+        </div>
+
+        <div class="epage" id="epage-project">
+          <div class="erow-end"><button class="ebtn ebtn-g" onclick="openM('m-proj')">+ 현장 등록</button></div>
+          <div class="egrid2">
+            <div class="ecard" style="border-top:3px solid #3a8c3a;"><div style="font-size:11px;color:#3a8c3a;font-weight:700;margin-bottom:6px;">진행중</div><div style="font-size:16px;font-weight:700;">시흥 RTO 설치</div><div style="font-size:12px;color:#888;margin-top:4px;">한국환경(주) | 박홍준</div><div style="margin-top:12px;"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span>진행률</span><span>75%</span></div><div style="background:#e0e0e0;border-radius:4px;height:7px;"><div style="background:#3a8c3a;width:75%;height:100%;border-radius:4px;"></div></div></div><div style="margin-top:10px;font-size:11px;color:#888;">납기: 2026-07-30</div></div>
+            <div class="ecard" style="border-top:3px solid #1976d2;"><div style="font-size:11px;color:#1976d2;font-weight:700;margin-bottom:6px;">진행중</div><div style="font-size:16px;font-weight:700;">안산 집진기 설치</div><div style="font-size:12px;color:#888;margin-top:4px;">대림산업 | 김과장</div><div style="margin-top:12px;"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span>진행률</span><span>40%</span></div><div style="background:#e0e0e0;border-radius:4px;height:7px;"><div style="background:#1976d2;width:40%;height:100%;border-radius:4px;"></div></div></div><div style="margin-top:10px;font-size:11px;color:#888;">납기: 2026-08-15</div></div>
+          </div>
+        </div>
+
+        <div class="epage" id="epage-quote">
+          <div class="erow-end"><button class="ebtn ebtn-o" onclick="openM('m-order')">+ 발주서</button><button class="ebtn ebtn-g" onclick="openM('m-quote')">+ 견적서</button></div>
+          <div class="ecard"><div class="ecard-title">📋 견적서 목록</div><table><thead><tr><th>견적번호</th><th>거래처</th><th>건명</th><th>금액</th><th>상태</th></tr></thead><tbody>
+            <tr><td>Q-2026-015</td><td>한국환경(주)</td><td>RTO 설치공사</td><td>12,500,000원</td><td><span class="badge bg">수주</span></td></tr>
+            <tr><td>Q-2026-014</td><td>대림산업</td><td>집진기 납품</td><td>8,200,000원</td><td><span class="badge bo">검토중</span></td></tr>
+          </tbody></table></div>
+          <div class="ecard"><div class="ecard-title">📦 발주서 목록</div><table><thead><tr><th>발주번호</th><th>공급업체</th><th>품목</th><th>금액</th><th>상태</th></tr></thead><tbody>
+            <tr><td>PO-2026-008</td><td>대신정공</td><td>덕트 자재</td><td>3,200,000원</td><td><span class="badge bg">입고완료</span></td></tr>
+          </tbody></table></div>
+        </div>
+
+        <div class="epage" id="epage-client">
+          <div class="erow-end"><button class="ebtn ebtn-g" onclick="openM('m-client')">+ 거래처 등록</button></div>
+          <div class="ecard"><div class="ecard-title">🏢 거래처 목록</div><table><thead><tr><th>업체명</th><th>구분</th><th>담당자</th><th>연락처</th><th>이메일</th></tr></thead><tbody>
+            <tr><td>한국환경(주)</td><td><span class="badge bg">발주처</span></td><td>김철수 부장</td><td>031-XXX-XXXX</td><td>kim@korenv.com</td></tr>
+            <tr><td>대신정공</td><td><span class="badge bo">공급업체</span></td><td>오필열 팀장</td><td>031-434-0618</td><td>daeshin0618@hanmail.net</td></tr>
+          </tbody></table></div>
+        </div>
+
+        <div class="epage" id="epage-material">
+          <div class="erow-end"><button class="ebtn ebtn-g" onclick="openM('m-mat')">📥 입고 등록</button></div>
+          <div class="ecard"><div class="ecard-title">📦 재고 현황</div><table><thead><tr><th>품명</th><th>규격</th><th>단위</th><th>재고량</th><th>상태</th></tr></thead><tbody>
+            <tr><td>SS400 철판</td><td>6T×1500×3000</td><td>장</td><td>12</td><td><span class="badge bg">정상</span></td></tr>
+            <tr><td>STS304 판재</td><td>3T×1220×2440</td><td>장</td><td>3</td><td><span class="badge br">부족</span></td></tr>
+          </tbody></table></div>
+        </div>
+
+        <div class="epage" id="epage-salary">
+          <div class="ecard"><div class="ecard-title">💰 2026년 6월 급여</div><table><thead><tr><th>이름</th><th>직급</th><th>기본급</th><th>수당</th><th>공제</th><th>실수령액</th></tr></thead><tbody>
+            <tr><td>김과장</td><td>과장</td><td>3,500,000원</td><td>200,000원</td><td>420,000원</td><td>3,280,000원</td></tr>
+            <tr><td>이대리</td><td>대리</td><td>2,800,000원</td><td>150,000원</td><td>336,000원</td><td>2,614,000원</td></tr>
+          </tbody></table></div>
+        </div>
+
+        <div class="epage" id="epage-expense">
+          <div class="erow-between">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <button class="ebtn ebtn-o ebtn-sm" onclick="chgMonth(-1)">◀</button>
+              <span id="exp-month" style="font-size:15px;font-weight:700;min-width:90px;text-align:center;"></span>
+              <button class="ebtn ebtn-o ebtn-sm" onclick="chgMonth(1)">▶</button>
+            </div>
+            <button class="ebtn ebtn-g" onclick="openM('m-exp')">+ 경비 등록</button>
+          </div>
+          <div class="egrid4" style="margin-bottom:16px;">
+            <div class="estat esg"><div class="estat-label">교통비</div><div class="estat-val" id="e-trans">0원</div></div>
+            <div class="estat esb"><div class="estat-label">식대</div><div class="estat-val" id="e-meal">0원</div></div>
+            <div class="estat eso"><div class="estat-label">자재구입</div><div class="estat-val" id="e-mat">0원</div></div>
+            <div class="estat esr"><div class="estat-label">합계</div><div class="estat-val" id="e-tot">0원</div></div>
+          </div>
+          <div class="ecard"><div class="ecard-title">🧾 경비 내역</div>
+            <table><thead><tr><th>날짜</th><th>항목</th><th>금액</th><th>신청자</th><th>현장</th><th>상태</th></tr></thead>
+            <tbody id="exp-list"></tbody></table>
+            <div id="exp-empty" style="padding:32px;text-align:center;color:#aaa;font-size:13px;">등록된 경비가 없습니다.</div>
+          </div>
+        </div>
+
+        <div class="epage" id="epage-mail">
+          <div class="egrid2">
+            <div class="ecard">
+              <div class="ecard-title">✉️ 받은 메시지</div>
+              <div id="mail-inbox" style="min-height:150px;"></div>
+              <div style="margin-top:16px;border-top:1px solid #e0e8e0;padding-top:16px;">
+                <div class="ecard-title">✏️ 새 메시지</div>
+                <div class="efg"><label>받는 사람</label><select id="mail-to"><option>전체</option><option>박홍준</option><option>김과장</option><option>이대리</option><option>최사원</option></select></div>
+                <div class="efg"><label>내용</label><textarea id="mail-body" placeholder="메시지 입력..."></textarea></div>
+                <button class="ebtn ebtn-g" style="width:100%;" onclick="sendMsg()">전송</button>
+              </div>
+            </div>
+            <div class="ecard"><div class="ecard-title">📨 보낸 메시지</div><div id="mail-sent" style="min-height:150px;"></div></div>
+          </div>
+        </div>
+
+        <div class="epage" id="epage-settings">
+          <div class="erow-end"><button class="ebtn ebtn-g" onclick="openM('m-emp')">+ 직원 등록</button></div>
+          <div class="ecard"><div class="ecard-title">👥 직원 목록</div>
+            <table><thead><tr><th>이름</th><th>직급</th><th>연락처</th><th>권한</th><th>상태</th><th>관리</th></tr></thead>
+            <tbody id="emp-list"></tbody></table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 모달들 -->
+<div class="emodal-bg" id="m-att"><div class="emodal"><h3>근태 등록</h3><div class="efr2"><div class="efg"><label>직원</label><select><option>박홍준</option><option>김과장</option><option>이대리</option><option>최사원</option></select></div><div class="efg"><label>날짜</label><input type="date"></div></div><div class="efr2"><div class="efg"><label>출근</label><input type="time"></div><div class="efg"><label>퇴근</label><input type="time"></div></div><div class="efg"><label>상태</label><select><option>출근</option><option>지각</option><option>휴가</option><option>결근</option></select></div><div class="emodal-foot"><button class="ebtn ebtn-o" onclick="closeM('m-att')">취소</button><button class="ebtn ebtn-g" onclick="closeM('m-att');alert('등록되었습니다.')">등록</button></div></div></div>
+<div class="emodal-bg" id="m-proj"><div class="emodal"><h3>현장 등록</h3><div class="efg"><label>현장명</label><input type="text"></div><div class="efr2"><div class="efg"><label>거래처</label><select><option>한국환경(주)</option><option>대림산업</option><option>현대제철</option></select></div><div class="efg"><label>담당자</label><select><option>박홍준</option><option>김과장</option><option>이대리</option></select></div></div><div class="efr2"><div class="efg"><label>시작일</label><input type="date"></div><div class="efg"><label>납기일</label><input type="date"></div></div><div class="efg"><label>계약금액</label><input type="text"></div><div class="emodal-foot"><button class="ebtn ebtn-o" onclick="closeM('m-proj')">취소</button><button class="ebtn ebtn-g" onclick="closeM('m-proj');alert('등록되었습니다.')">등록</button></div></div></div>
+<div class="emodal-bg" id="m-quote"><div class="emodal"><h3>견적서 작성</h3><div class="efr2"><div class="efg"><label>견적번호</label><input type="text" value="Q-2026-016" readonly></div><div class="efg"><label>작성일</label><input type="date"></div></div><div class="efg"><label>거래처</label><select><option>한국환경(주)</option><option>대림산업</option><option>현대제철</option></select></div><div class="efg"><label>건명</label><input type="text"></div><div class="efg"><label>금액</label><input type="text"></div><div class="efg"><label>내용</label><textarea></textarea></div><div class="emodal-foot"><button class="ebtn ebtn-o" onclick="closeM('m-quote')">취소</button><button class="ebtn ebtn-g" onclick="closeM('m-quote');alert('저장되었습니다.')">저장</button></div></div></div>
+<div class="emodal-bg" id="m-order"><div class="emodal"><h3>발주서 작성</h3><div class="efr2"><div class="efg"><label>발주번호</label><input type="text" value="PO-2026-009" readonly></div><div class="efg"><label>발주일</label><input type="date"></div></div><div class="efg"><label>공급업체</label><select><option>대신정공</option><option>성진스틸</option></select></div><div class="efg"><label>품목</label><input type="text"></div><div class="efr2"><div class="efg"><label>수량</label><input type="text"></div><div class="efg"><label>금액</label><input type="text"></div></div><div class="emodal-foot"><button class="ebtn ebtn-o" onclick="closeM('m-order')">취소</button><button class="ebtn ebtn-g" onclick="closeM('m-order');alert('저장되었습니다.')">저장</button></div></div></div>
+<div class="emodal-bg" id="m-client"><div class="emodal"><h3>거래처 등록</h3><div class="efg"><label>업체명</label><input type="text"></div><div class="efr2"><div class="efg"><label>구분</label><select><option>발주처</option><option>공급업체</option></select></div><div class="efg"><label>담당자</label><input type="text"></div></div><div class="efr2"><div class="efg"><label>연락처</label><input type="text"></div><div class="efg"><label>이메일</label><input type="email"></div></div><div class="emodal-foot"><button class="ebtn ebtn-o" onclick="closeM('m-client')">취소</button><button class="ebtn ebtn-g" onclick="closeM('m-client');alert('등록되었습니다.')">등록</button></div></div></div>
+<div class="emodal-bg" id="m-mat"><div class="emodal"><h3>입고 등록</h3><div class="efg"><label>품명</label><input type="text"></div><div class="efr2"><div class="efg"><label>규격</label><input type="text"></div><div class="efg"><label>단위</label><select><option>장</option><option>개</option><option>kg</option><option>m</option></select></div></div><div class="efr2"><div class="efg"><label>수량</label><input type="number"></div><div class="efg"><label>단가</label><input type="text"></div></div><div class="emodal-foot"><button class="ebtn ebtn-o" onclick="closeM('m-mat')">취소</button><button class="ebtn ebtn-g" onclick="closeM('m-mat');alert('등록되었습니다.')">등록</button></div></div></div>
+<div class="emodal-bg" id="m-exp"><div class="emodal"><h3>경비 등록</h3><div class="efr2"><div class="efg"><label>날짜</label><input type="date" id="ex-date"></div><div class="efg"><label>항목</label><select id="ex-cat"><option>교통비</option><option>식대</option><option>자재구입</option><option>숙박비</option><option>기타</option></select></div></div><div class="efr2"><div class="efg"><label>금액</label><input type="text" id="ex-amt" placeholder="숫자만 입력"></div><div class="efg"><label>현장</label><select id="ex-site"><option>시흥 RTO</option><option>안산 집진기</option><option>화성 스크러버</option><option>본사</option></select></div></div><div class="efg"><label>내용</label><textarea id="ex-memo"></textarea></div><div class="emodal-foot"><button class="ebtn ebtn-o" onclick="closeM('m-exp')">취소</button><button class="ebtn ebtn-g" onclick="addExpense()">등록</button></div></div></div>
+<div class="emodal-bg" id="m-emp"><div class="emodal"><h3>직원 등록</h3><div class="efr2"><div class="efg"><label>이름</label><input type="text" id="e-name"></div><div class="efg"><label>직급</label><select id="e-title"><option>사원</option><option>대리</option><option>과장</option><option>차장</option><option>부장</option><option>경리</option></select></div></div><div class="efr2"><div class="efg"><label>아이디</label><input type="text" id="e-id"></div><div class="efg"><label>비밀번호</label><input type="password" id="e-pw"></div></div><div class="efr2"><div class="efg"><label>연락처</label><input type="text" id="e-phone"></div><div class="efg"><label>권한</label><select id="e-role"><option value="staff">일반직원</option><option value="accountant">경리</option><option value="admin">관리자</option></select></div></div><div class="ehint">· 일반직원: 근태, 현장, 견적, 자재, 거래처<br>· 경리/관리자: 전체 메뉴</div><div class="emodal-foot"><button class="ebtn ebtn-o" onclick="closeM('m-emp')">취소</button><button class="ebtn ebtn-g" onclick="addEmp()">등록</button></div></div></div>
+
+<script>
+// ===== 전역 변수 =====
+var accounts = [{id:'admin',pw:'1234',name:'박홍준',role:'admin',title:'대표'}];
+var curUser = null;
+var expList = [];
+var expY = new Date().getFullYear();
+var expM = new Date().getMonth()+1;
+var msgs = [], sentMsgs = [];
+
+document.getElementById('erp-date').textContent = new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'short'});
+
+// ===== 홈페이지 직원 로그인 배너 =====
+function toggleErpBox() {
+  var box = document.getElementById('erp-login-box');
+  box.style.display = box.style.display === 'block' ? 'none' : 'block';
+}
+
+document.getElementById('erp-login-btn').addEventListener('click', function() {
+  var id = document.getElementById('erp-id').value.trim();
+  var pw = document.getElementById('erp-pw').value;
+  if (!id || !pw) { alert('아이디와 비밀번호를 입력하세요.'); return; }
+  var u = accounts.find(function(a) { return a.id===id && a.pw===pw; });
+  if (!u) { alert('아이디 또는 비밀번호가 틀렸습니다.'); return; }
+  showERP(u);
+});
+
+document.getElementById('erp-id').addEventListener('keydown', function(e) {
+  if (e.key==='Enter') document.getElementById('erp-pw').focus();
+});
+document.getElementById('erp-pw').addEventListener('keydown', function(e) {
+  if (e.key==='Enter') document.getElementById('erp-login-btn').click();
+});
+
+// ===== ERP 표시 =====
+function showERP(u) {
+  curUser = u;
+  document.getElementById('site').style.display = 'none';
+  document.getElementById('erp-app').style.display = 'block';
+  document.getElementById('erp-login-screen').style.display = 'none';
+  document.getElementById('erp-main-wrap').style.display = 'block';
+  document.getElementById('sb-av').textContent = u.name[0];
+  document.getElementById('sb-nm').textContent = u.name;
+  document.getElementById('sb-rl').textContent = u.title;
+  applyRole(u.role);
+  renderEmp();
+  renderExp();
+}
+
+// ===== ERP 로그인 (직접 접근시) =====
+document.getElementById('erp-do-login').addEventListener('click', function() {
+  var id = document.getElementById('erp-lid').value.trim();
+  var pw = document.getElementById('erp-lpw').value;
+  if (!id || !pw) { alert('아이디와 비밀번호를 입력하세요.'); return; }
+  var u = accounts.find(function(a) { return a.id===id && a.pw===pw; });
+  if (!u) { alert('아이디 또는 비밀번호가 틀렸습니다.'); return; }
+  showERP(u);
+});
+
+// ===== 로그아웃 =====
+document.getElementById('erp-logout').addEventListener('click', function() {
+  if (confirm('로그아웃 하시겠습니까?')) {
+    curUser = null;
+    document.getElementById('erp-app').style.display = 'none';
+    document.getElementById('site').style.display = 'block';
+  }
+});
+
+// ===== 권한 =====
+function applyRole(role) {
+  var isStaff = role === 'staff';
+  document.querySelectorAll('.salary-menu, .expense-menu').forEach(function(el) {
+    el.style.display = isStaff ? 'none' : 'flex';
+  });
+  document.querySelectorAll('.admin-menu').forEach(function(el) {
+    el.style.display = (role==='admin'||role==='accountant') ? 'flex' : 'none';
+  });
+}
+
+// ===== 네비게이션 =====
+var pageTitles = {dashboard:'대시보드',attendance:'근태관리',project:'프로젝트/현장',quote:'견적서/발주서',client:'거래처관리',material:'자재/재고',salary:'급여관리',expense:'경비지출',mail:'사내메시지',settings:'직원/권한관리'};
+
+document.querySelectorAll('.sb-item').forEach(function(item) {
+  item.addEventListener('click', function() {
+    var pg = this.getAttribute('data-page');
+    document.querySelectorAll('.sb-item').forEach(function(x) { x.classList.remove('on'); });
+    document.querySelectorAll('.epage').forEach(function(x) { x.classList.remove('on'); });
+    this.classList.add('on');
+    document.getElementById('epage-'+pg).classList.add('on');
+    document.getElementById('erp-page-title').textContent = pageTitles[pg] || pg;
+    if (pg==='mail') renderMail();
+    if (pg==='expense') renderExp();
+  });
+});
+
+// ===== 모달 =====
+function openM(id) { document.getElementById(id).classList.add('on'); }
+function closeM(id) { document.getElementById(id).classList.remove('on'); }
+document.querySelectorAll('.emodal-bg').forEach(function(el) {
+  el.addEventListener('click', function(e) { if (e.target===this) this.classList.remove('on'); });
+});
+
+// ===== 경비 =====
+function chgMonth(d) {
+  expM += d;
+  if (expM>12) { expM=1; expY++; }
+  if (expM<1) { expM=12; expY--; }
+  renderExp();
+}
+function renderExp() {
+  var label = document.getElementById('exp-month');
+  if (label) label.textContent = expY+'년 '+expM+'월';
+  var f = expList.filter(function(e) {
+    var d = new Date(e.date);
+    return d.getFullYear()===expY && d.getMonth()+1===expM;
+  });
+  var tr=0,ml=0,mt=0,ot=0;
+  f.forEach(function(e) {
+    var a = parseInt(e.amt)||0;
+    if (e.cat==='교통비') tr+=a;
+    else if (e.cat==='식대') ml+=a;
+    else if (e.cat==='자재구입') mt+=a;
+    else ot+=a;
+  });
+  var et=document.getElementById('e-trans'); if(et) et.textContent=tr.toLocaleString()+'원';
+  var em=document.getElementById('e-meal'); if(em) em.textContent=ml.toLocaleString()+'원';
+  var ema=document.getElementById('e-mat'); if(ema) ema.textContent=mt.toLocaleString()+'원';
+  var etot=document.getElementById('e-tot'); if(etot) etot.textContent=(tr+ml+mt+ot).toLocaleString()+'원';
+  var tb=document.getElementById('exp-list');
+  var ep=document.getElementById('exp-empty');
+  if (!tb) return;
+  tb.innerHTML='';
+  if (!f.length) { if(ep) ep.style.display='block'; return; }
+  if(ep) ep.style.display='none';
+  f.forEach(function(e) {
+    tb.innerHTML += '<tr><td>'+e.date+'</td><td>'+e.cat+'</td><td>'+(parseInt(e.amt)||0).toLocaleString()+'원</td><td>'+e.person+'</td><td>'+e.site+'</td><td><span class="badge bo">대기</span></td></tr>';
+  });
+}
+function addExpense() {
+  var d=document.getElementById('ex-date').value;
+  var a=document.getElementById('ex-amt').value;
+  if (!d||!a) { alert('날짜와 금액을 입력하세요.'); return; }
+  expList.push({date:d,cat:document.getElementById('ex-cat').value,amt:a,person:curUser?curUser.name:'',site:document.getElementById('ex-site').value});
+  closeM('m-exp');
+  document.getElementById('ex-date').value='';
+  document.getElementById('ex-amt').value='';
+  document.getElementById('ex-memo').value='';
+  renderExp();
+  alert('등록되었습니다.');
+}
+
+// ===== 직원 =====
+function addEmp() {
+  var nm=document.getElementById('e-name').value.trim();
+  var id=document.getElementById('e-id').value.trim();
+  var pw=document.getElementById('e-pw').value;
+  var ph=document.getElementById('e-phone').value;
+  var rl=document.getElementById('e-role').value;
+  var tt=document.getElementById('e-title').value;
+  if (!nm||!id||!pw) { alert('이름, 아이디, 비밀번호는 필수입니다.'); return; }
+  if (accounts.find(function(a) { return a.id===id; })) { alert('이미 사용중인 아이디입니다.'); return; }
+  accounts.push({id:id,pw:pw,name:nm,role:rl,title:tt,phone:ph});
+  closeM('m-emp');
+  ['e-name','e-id','e-phone'].forEach(function(i) { document.getElementById(i).value=''; });
+  document.getElementById('e-pw').value='';
+  renderEmp();
+  alert(nm+' ('+id+') 계정 생성 완료!');
+}
+function renderEmp() {
+  var rl={admin:'관리자',accountant:'경리',staff:'일반직원'};
+  var rc={admin:'br',accountant:'bo',staff:'bb'};
+  var tb=document.getElementById('emp-list');
+  if (!tb) return;
+  tb.innerHTML='';
+  accounts.forEach(function(a) {
+    tb.innerHTML += '<tr><td>'+a.name+'</td><td>'+(a.title||'대표')+'</td><td>'+(a.phone||'-')+'</td><td><span class="badge '+rc[a.role]+'">'+rl[a.role]+'</span></td><td><span class="badge bg">재직</span></td><td><button class="ebtn ebtn-o ebtn-sm" onclick="chgPw(\''+a.id+'\')">비번변경</button></td></tr>';
+  });
+}
+function chgPw(id) {
+  var np=prompt('새 비밀번호:');
+  if (!np) return;
+  var a=accounts.find(function(x) { return x.id===id; });
+  if (a) { a.pw=np; alert('변경 완료!'); }
+}
+
+// ===== 메시지 =====
+function renderMail() {
+  var ib=document.getElementById('mail-inbox');
+  var sb=document.getElementById('mail-sent');
+  ib.innerHTML = msgs.length ? '' : '<div style="padding:20px;text-align:center;color:#aaa;font-size:13px;">받은 메시지가 없습니다.</div>';
+  msgs.forEach(function(m) { ib.innerHTML+='<div style="padding:12px;border-bottom:1px solid #e0e8e0;"><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><b>'+m.from+'</b><span style="font-size:11px;color:#aaa;">'+m.time+'</span></div><div style="font-size:13px;color:#666;">'+m.txt+'</div></div>'; });
+  sb.innerHTML = sentMsgs.length ? '' : '<div style="padding:20px;text-align:center;color:#aaa;font-size:13px;">보낸 메시지가 없습니다.</div>';
+  sentMsgs.forEach(function(m) { sb.innerHTML+='<div style="padding:12px;border-bottom:1px solid #e0e8e0;"><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><b>→ '+m.to+'</b><span style="font-size:11px;color:#aaa;">'+m.time+'</span></div><div style="font-size:13px;color:#666;">'+m.txt+'</div></div>'; });
+}
+function sendMsg() {
+  var t=document.getElementById('mail-to').value;
+  var b=document.getElementById('mail-body').value;
+  if (!b) { alert('내용을 입력하세요.'); return; }
+  var now=new Date();
+  var tm=now.getHours()+':'+(now.getMinutes()<10?'0':'')+now.getMinutes();
+  sentMsgs.unshift({to:t,txt:b,time:tm});
+  msgs.unshift({from:curUser?curUser.name:'관리자',txt:b,time:tm});
+  document.getElementById('mail-body').value='';
+  renderMail();
+  alert('전송되었습니다.');
+}
+</script>
+</body>
+</html>
