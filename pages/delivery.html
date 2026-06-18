@@ -215,8 +215,7 @@ function openPrint(html){
   var w=window.open('','_blank','width=1000,height=760');
   w.document.write(html);w.document.close();
 }
-</script>
-<script>
+
 var deliveries = getData('deliveries') || [];
 var clients = getData('clients') || [
   {name:'한국환경(주)',contact:'김철수',tel:'031-XXX-XXXX',email:'kim@korenv.com',addr:'경기도 수원시'},

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.20.3/dist/xlsx.full.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -240,8 +240,7 @@ function openPrint(html){
   var w=window.open('','_blank','width=1000,height=760');
   w.document.write(html);w.document.close();
 }
-</script>
-<script>
+
 var taxInvoices = getData('taxInvoices') || [];
 var clients = getData('clients') || [
   {name:'한국환경(주)',reg:'123-45-67890',ceo:'김대표',biz:'제조업',addr:'경기도 수원시',email:'kim@korenv.com'},
